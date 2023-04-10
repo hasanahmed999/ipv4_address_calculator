@@ -11,20 +11,9 @@ fn main() {
     println!("input ip address to convert (ipv4 format): ");
     stdin().read_line(&mut ipv4_addr).expect("Error");
 
-    //println!("You typed: {}", ip_addr);
-    // let octets = ipv4_addr.trim().split(".");
-    // // for octet in octets {
-    // //     let octet_int: i32 = octet.parse().unwrap();
-    // //     let octet_hex = format!("{:X}", octet_int);
-    // //     //println!("{}", octet_hex);
-    // // }
+
     // https://stackoverflow.com/questions/26643688/how-do-i-split-a-string-in-rust
     let octets_vec = ipv4_addr.trim().split(".").collect::<Vec<_>>();
-    // for octet in octets_vec {
-    //     println!("{}", octet);
-    // }
-    
-    // convert to ipv6
 
     // build final string, append all colons
     // based off formatting from this site 
@@ -34,7 +23,6 @@ fn main() {
     // Expanded format
     //https://stackoverflow.com/questions/30154541/how-do-i-concatenate-strings
     let mut prefix = "0000:0000:0000:0000:0000:FFFF".to_owned();
-    //for octet in octets_vec {//}.step_by(2) {
     for x in (0..octets_vec.len()).step_by(2) {
         prefix.push_str(":");
         let octet_int: i32 = octets_vec[x].parse().unwrap();
@@ -47,11 +35,8 @@ fn main() {
         
     }
 
-    // when converting, will always have 0000:0000:0000:0000:0000:FFFF: in front
     println!("{}", prefix);
     
-    // Condensed format
-
-
+    // TODO: Condensed format
 
 }
